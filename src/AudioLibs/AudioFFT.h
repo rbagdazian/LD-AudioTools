@@ -228,6 +228,24 @@ class AudioFFTBase : public AudioPrint {
             }
         }
 
+        void powers(float *vmags, uint16_t length)
+        {
+            int msize = (length > size())?size():length;
+            for (int j=0;j<msize;j++){
+                *(vmags+j) = magnitudeFast(j);
+            }
+        }
+
+        void powers(float *vmags, uint16_t start, uint16_t stop, uint16_t stride)
+        {
+            int k =0;
+
+            for (int j = start ; j<stop ; j += stride){
+                *(vmags+k) = magnitudeFast(j);
+		        k++;
+            }
+        }
+
 
         /// Determines the N biggest result values
         template<int N>

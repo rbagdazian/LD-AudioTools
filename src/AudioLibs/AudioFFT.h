@@ -218,6 +218,16 @@ class AudioFFTBase : public AudioPrint {
             }
         }
 
+        void magnitudes(float *vmags, uint16_t start, uint16_t stop, uint16_t stride)
+        {
+            int k =0;
+
+            for (int j = start ; j<stop ; j += stride){
+                *(vmags+k) = magnitude(j);
+		k++;
+            }
+        }
+
 
         /// Determines the N biggest result values
         template<int N>

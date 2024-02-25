@@ -246,6 +246,19 @@ class AudioFFTBase : public AudioPrint {
             }
         }
 
+        void powers(float *vmags, uint16_t length)
+        {
+            int msize = (length > size())?size():length;
+            for (int j=0;j<msize;j++){
+                *(vmags+j) = magnitudeFast(j);
+            }
+        }
+
+        float binpower(uint16_t bin)
+        {
+		return magnitudeFast(bin);
+        }
+
 
         /// Determines the N biggest result values
         template<int N>
